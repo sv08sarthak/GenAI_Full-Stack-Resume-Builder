@@ -10,5 +10,5 @@ console.log(process.env.MONGO_URI);
 connectToDB() 
 
 app.listen(3000, ()=>{
-    console.log("Server is running now.... for your project port 3000")
+    console.log("Server is running on port 3000");
 })
