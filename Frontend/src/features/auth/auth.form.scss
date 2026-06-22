@@ -5,9 +5,42 @@ main{
     justify-content: center;
     align-items: center;
 
+
+    .form-container{
+        min-width: 350px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+    }
+
     .input-group{
         display: flex;
         flex-direction: column;
+
+        gap: 1.5rem;
+
+        input{
+            border: none;
+            outline: none;
+            padding-inline: 1rem;
+            padding-block: 0.75rem;
+            border-radius: 0.5rem;
+        }
     }
+
+    a{
+        color: rgb(133, 115, 239);
+        text-decoration: none;
+        font-weight: bold;
+    }
+
     
 }

@@ -1,13 +1,25 @@
 import React from 'react'
+import { useNavigate,Link } from 'react-router'
 import "../auth.form.scss"
 
+
 const Login = () => {
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
+    const navigate = useNavigate()
+
+
+
     return (
         <main>
             <div className="form-container">
                 <h1>Login</h1>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     
                     <div className="input-group">
 
@@ -24,6 +36,9 @@ const Login = () => {
 
 
                 </form>
+
+                <p>Don't have an account ? <Link to={"/register"}>Register</Link></p>
+                
 
             </div>
         </main>
