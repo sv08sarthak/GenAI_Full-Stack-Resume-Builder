@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../auth.context"
 import {login, register, logout, getMe} from "../services/auth.api"
 
@@ -54,6 +54,18 @@ export const useAuth = () => {
             setLoading(false)
         }
     }
+
+
+    useEffect( ()=> {
+        const getAndSetUser = async()=> {
+            const data = await getMe()
+            setUser(data.user)   //this works because depends on cookies which carries token 
+                                //till we have token we can get user data from backend
+            setLoading(false)
+        }
+
+        getAndSetUser()
+    },[])
 
 
 
