@@ -36,7 +36,7 @@ const mongoose = require('mongoose');
  *              tasks: [strings]
  */
 
-const technicalQuestionsSchema = new mongoose.Schema({
+const technicalQuestionSchema = new mongoose.Schema({
     question: {
         type: String,
         required: [true, "Technical question is required"]
@@ -125,7 +125,7 @@ const interviewReportSchema = new mongoose.Schema({
         min: 0,
         max: 100,
     },
-    technicalQuestions: [ technicalQuestionsSchema ],
+    technicalQuestions: [ technicalQuestionSchema ],
     behavioralQuestions: [ behavioralQuestionSchema ],
     skillGaps: [ skillGapSchema ],
     preparationPlan: [ preparationPlanSchema]

@@ -5,7 +5,7 @@ import {login, register, logout, getMe} from "../services/auth.api"
 export const useAuth = () => {
 
      const context = useContext(AuthContext)
-    const {user, setUser, loading, setLoading}  = context     //creation of hook layer wich is mangaing both state and api layer
+    const {user, setUser, loading, setLoading}  = context || {}     //creation of hook layer wich is mangaing both state and api layer
 
     const handleLogin = async ({email, password }) => {
         setLoading(true)
@@ -57,15 +57,31 @@ export const useAuth = () => {
 
 
     useEffect( ()=> {
+        let isMounted = true
+
         const getAndSetUser = async()=> {
-            const data = await getMe()
-            setUser(data.user)   //this works because depends on cookies which carries token 
-                                //till we have token we can get user data from backend
-            setLoading(false)
+            try {
+                const data = await getMe()
+                if (isMounted) {
+                    setUser(data?.user || null)
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setUser(null)
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false)
+                }
+            }
         }
 
         getAndSetUser()
-    },[])
+
+        return () => {
+            isMounted = false
+        }
+    }, [])
 
 
 
